@@ -37,11 +37,15 @@ void runConveyor(int timeMilliseconds) {
   digitalWrite(IN2_PIN_conveyer, HIGH);
   digitalWrite(IN3_PIN_conveyer, LOW);
   digitalWrite(IN4_PIN_conveyer, HIGH);
-
+  
+  analogWrite(ENA_PIN_conveyer, 100);
+  analogWrite(ENB_PIN_conveyer, 100);
+/*
   for (int i = 0; i < 50; i ++){
     analogWrite(ENA_PIN_conveyer, i);
     analogWrite(ENB_PIN_conveyer, i);
   }
+  */
 /*
   delay(timeMilliseconds);
 
