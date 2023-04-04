@@ -15,8 +15,8 @@ const int ENB_PIN_conveyer = 3;
 const int IN3_PIN_conveyer = 4;
 const int IN4_PIN_conveyer = 2;
 
-const int is_red = A1;
-const int is_green = A0;
+const int is_red = A0;
+const int is_green = A1;
 const int conveyer_toggle = A2;
 
 
@@ -37,10 +37,11 @@ void runConveyor(int timeMilliseconds) {
   digitalWrite(IN2_PIN_conveyer, HIGH);
   digitalWrite(IN3_PIN_conveyer, LOW);
   digitalWrite(IN4_PIN_conveyer, HIGH);
-  
-  analogWrite(ENA_PIN_conveyer, 100);
-  analogWrite(ENB_PIN_conveyer, 100);
-/*
+
+  analogWrite(ENA_PIN_conveyer, 150);
+  analogWrite(ENB_PIN_conveyer, 150);
+  /*
+
   for (int i = 0; i < 50; i ++){
     analogWrite(ENA_PIN_conveyer, i);
     analogWrite(ENB_PIN_conveyer, i);
@@ -64,6 +65,9 @@ void runConveyor(int timeMilliseconds) {
 
 void setup() {
   // put your setup code here, to run once:
+
+  Serial.begin(9600);
+  while(!Serial);
 
   pinMode(ENA_PIN_sweeper_red, OUTPUT);
   pinMode(IN1_PIN_sweeper_red, OUTPUT);
@@ -92,21 +96,23 @@ bool green = false;
 bool red = false;
 
 void loop() {
-/*
+  
+
   start_conveyer = digitalRead(conveyer_toggle);
   red = digitalRead(is_red);
   green = digitalRead(is_green);
+  Serial.print("START_CONVEYOR VALUE: ");Serial.println(start_conveyer);
   if(start_conveyer){
-    runConveyer(1000);
+    runConveyor(1000);
     if(red){
       runSweeper(IN1_PIN_sweeper_red, IN2_PIN_sweeper_red, ENA_PIN_sweeper_red);
     }
     else if (green){
       runSweeper(IN3_PIN_sweeper_green, IN4_PIN_sweeper_green, ENB_PIN_sweeper_green);
     }
-    delay(1000)
+    delay(1000);
   }
-  */
+  
   
 /*
   digitalWrite(IN1_PIN_sweeper_red, HIGH);
@@ -121,6 +127,6 @@ void loop() {
   */
 
   //runConveyor(5000);
-  runConveyor(1000);
+  //runConveyor(1000);
   //delay(2000);
 }
